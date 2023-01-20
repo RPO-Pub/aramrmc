@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <div style="flex: 1; background-color: silver; text-align: center;">
+          <img id="1i" src="https://i.imgur.com/Ouf7Ajd.png" alt="Image 1" style="width: 200px; height: 200px; margin-top: 20px;">
+          <p id="1t" style="font-size: 70px;">???</p>
+        </div>
+        <div style="flex: 1; background-color: darkgray; text-align: center;">
+          <img id="2i" src="https://i.imgur.com/Ouf7Ajd.png" alt="Image 2" style="width: 200px; height: 200px; margin-top: 20px;">
+          <p id="2t" style="font-size: 70px;">???2</p>
+        </div>
+        <div style="flex: 1; background-color: grey; text-align: center;">
+          <img id="3i" src="https://i.imgur.com/Ouf7Ajd.png" alt="Image 3" style="width: 200px; height: 200px; margin-top: 20px ;">
+          <p id="3t" style="font-size: 70px;">???</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 20px;">
+        <button onclick="generateRandomChamp()">ARAM</button>
+      </div>
+</body>
+</html>
+
+<script type="text/javascript" src="championMap.js"></script>
+<script>
+    
+    function changeImage(champion, num) {
+        const img = document.getElementById(num+'i')
+        img.src = championMap[champion]
+    }
+    function changeText(champion, num) {
+        const txt = document.getElementById(num+'t')
+        txt.innerHTML = champion
+    }
+    function changeChamp(champion, num) {
+        changeImage(champion, num)
+        changeText(champion, num)
+    }
+    function generateRandomChamp() {
+    // Generate 3 unique random numbers between 0 and championMap.length
+    let randomNumbers = [];
+
+    while(randomNumbers.length < 3){
+      let randomNumber = Math.floor(Math.random() * Object.keys(championMap).length);
+      if(randomNumbers.indexOf(randomNumber) === -1) {
+        randomNumbers.push(randomNumber);
+      }
+    }
+
+    changeChamp(Object.keys(championMap)[randomNumbers[0]], 1)
+    changeChamp(Object.keys(championMap)[randomNumbers[1]], 2)
+    changeChamp(Object.keys(championMap)[randomNumbers[2]], 3)
+  }
+
+</script>
